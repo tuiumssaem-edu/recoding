@@ -8,8 +8,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 <style>
 :root{
   --bg:#fbf7f1; --card:#ffffff; --ink:#2e2a33; --muted:#867f8c; --line:#efe7dc; --soft:#f7f1e8;
@@ -140,94 +138,20 @@ th{color:var(--muted);font-weight:600;white-space:nowrap;background:var(--soft)}
 th:first-child{border-radius:10px 0 0 10px}th:last-child{border-radius:0 10px 10px 0}
 .tscroll{overflow-x:auto}
 
-/* ── AI ── */
-.aicard{background:linear-gradient(160deg,#fff 60%,var(--mc-soft));}
-.aihead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.aiout{margin-top:14px;line-height:1.8}
-.aiout h2{font-size:20px;margin:22px 0 10px;padding:10px 14px;background:var(--mc-soft);border-radius:14px;color:var(--mc-ink)}
-.aiout h2:first-child{margin-top:0}
-.aiout h3{font-size:15.5px;margin:14px 0 6px;color:var(--mc-ink)}
-.aiout table{margin:8px 0}
-.aiout ul,.aiout ol{padding-left:22px}
 
-/* ── 기타 ── */
-.badge{display:inline-block;font-size:12px;padding:2px 10px;border-radius:999px;background:#fde3e3;color:#c43a3a;margin-left:6px;font-weight:700}
-.badge.ok{background:#e3f6ea;color:#1f8a4c}
-.stucard{border:1.5px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;background:var(--soft)}
-.stucard .cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px}
-.stucard textarea,.stucard input{background:#fff}
-.stucard textarea{font-size:14px}
-.banner{background:#fff4e2;border:1px solid #ffdca8;border-radius:14px;padding:12px 14px;margin-bottom:12px;font-size:14px}
-.spin{display:inline-block;width:16px;height:16px;border:2px solid var(--mc-soft);border-top-color:var(--mc);border-radius:50%;animation:sp 1s linear infinite;vertical-align:middle;margin-right:6px}
-@keyframes sp{to{transform:rotate(360deg)}}
-.empty{text-align:center;padding:28px 16px;color:var(--muted)}
-.empty .em{font-size:36px;display:block;margin-bottom:6px}
-#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:#2e2a33;color:#fff;padding:12px 20px;border-radius:999px;opacity:0;transition:.2s;pointer-events:none;z-index:50;max-width:90vw;font-size:14.5px;font-weight:600;box-shadow:0 10px 30px -10px rgba(0,0,0,.4)}
-#toast.show{opacity:1;transform:translateX(-50%)}#toast.bad{background:var(--i3)}
-@media (max-width:560px){
-  .hero{padding:16px 16px 6px}.hero h1{font-size:25px}.logo{width:44px;height:44px;font-size:23px}.today{display:none}
-  .row2{grid-template-columns:1fr 1fr}.row2 button{grid-column:span 2}.charts{grid-template-columns:1fr}
-  .card{padding:16px}.stickyin,main{padding-left:14px;padding-right:14px}
-}
-
-/* ═══ 한 화면 배치 ═══ */
-.stickyin{padding-top:10px}
-.toprow{display:flex;align-items:center;gap:16px;padding-bottom:8px}
-.brand{display:flex;align-items:center;gap:10px;flex:0 0 auto}
-.brand .logo{width:40px;height:40px;font-size:22px;border-radius:13px}
-.brand h1{font-family:'Jua','Pretendard',sans-serif;font-weight:400;font-size:23px;line-height:1.1;margin:0;letter-spacing:0;white-space:nowrap}
-.brand h1 em{font-style:normal;color:var(--mc)}
-.brand p{margin:1px 0 0;color:var(--muted);font-size:11.5px;white-space:nowrap}
-.toprow .stubar{flex:1;min-width:0;padding:4px 2px}
-.toprow .today{margin-left:0;font-size:13.5px;font-weight:600;color:var(--muted);white-space:nowrap}
-.navrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:8px}
-.navrow .tabs{padding-bottom:0}
-.navrow .seg{margin:0;flex:0 0 auto;width:330px;max-width:none}
-.navrow .seg button{padding:7px 10px;font-size:14px}
-main{padding-top:14px}
-.card{padding:16px 18px;margin-bottom:14px}
-h2{font-size:21px;margin-bottom:12px}
-.fld{margin-bottom:12px}.lab{margin-bottom:6px;font-size:14.5px}
-.chips{gap:6px;margin-bottom:7px}.chip{padding:5px 12px;font-size:13.5px}
-input[type=text],input[type=password],input[type=date],input[type=time],input:not([type]),select,textarea{padding:9px 13px}
-.row2{margin-bottom:12px}
-.ibtns button{padding:12px 0}
-.hint{margin:-4px 0 10px}
-.split{display:grid;gap:14px;align-items:start}
-.foot{display:flex;gap:10px;align-items:stretch;margin-top:4px}
-.foot textarea{flex:1;resize:none;min-height:52px}
-.foot .big{width:auto;flex:0 0 200px}
-.side .log li{align-items:flex-start}
-.sideh{margin:14px 0 6px}
-.side .empty{padding:14px}
-.grid{gap:12px}
 .bcard{padding:13px 14px}.bhead{margin-bottom:9px}.mini{margin-top:7px}
 /* 대시보드 하위 탭 */
 .dtabs{display:flex;gap:4px;background:#efe8de;border-radius:999px;padding:4px;margin-left:auto}
 .dtabs button{border:0;background:transparent;border-radius:999px;padding:7px 14px;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap}
 .dtabs button.on{background:#fff;color:var(--mc-ink);box-shadow:var(--shadow)}
 .filters{padding:12px 18px}
-.dash[data-dtab=chart] .dtable,.dash[data-dtab=chart] .dai{display:none}
-.dash[data-dtab=table] .stats,.dash[data-dtab=table] .charts,.dash[data-dtab=table] .dai{display:none}
-.dash[data-dtab=ai] #dBody{display:none}
+.dash[data-dtab=chart] .dtable{display:none}
+.dash[data-dtab=table] .stats,.dash[data-dtab=table] .charts{display:none}
 .stats{gap:10px;margin-bottom:14px}.stat{padding:10px 14px}.stat .v{font-size:20px}
 .cbox{padding:12px 14px}.cbox h4{margin-bottom:6px}
 .tgrid{display:grid;gap:14px}
 .tscroll th{position:sticky;top:0;z-index:1}
 
-/* 모델 고르기 창 */
-.modal{position:fixed;inset:0;background:rgba(46,42,51,.35);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:60;padding:16px}
-.modal.show{display:flex}
-.mbox{background:#fff;border-radius:22px;width:min(760px,100%);max-height:88vh;display:flex;flex-direction:column;padding:18px 20px;box-shadow:0 30px 80px -20px rgba(0,0,0,.35)}
-.mhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.mhead h3{margin:0}
-.mlist{overflow:auto;flex:1;border:1.5px solid var(--line);border-radius:14px}
-.mrow{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--line)}
-.mrow:last-child{border-bottom:0}.mrow:hover{background:var(--soft)}
-.minfo{display:flex;flex-direction:column;min-width:0}
-.minfo code{font-size:12px;color:var(--mc-ink);background:var(--mc-soft);border-radius:6px;padding:1px 6px;align-self:flex-start;margin:2px 0;word-break:break-all}
-.mbtns{display:flex;gap:6px;flex:0 0 auto}
-@media (max-width:560px){.mrow{flex-direction:column;align-items:stretch}.mbtns{justify-content:flex-end}}
 /* 설정 버튼 (오른쪽 위, 따로) */
 .gear{display:flex;align-items:center;gap:6px;flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:7px 14px;
   font-weight:700;color:var(--ink);cursor:pointer;box-shadow:var(--shadow);transition:.15s}
@@ -248,7 +172,6 @@ input[type=text],input[type=password],input[type=date],input[type=time],input:no
   .tgrid{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);align-items:start}
   .tgrid>.card{margin-bottom:0}
   .dtable .tscroll{max-height:calc(100vh - 335px);overflow:auto}
-  .dai .aiout{max-height:calc(100vh - 340px);overflow:auto;padding-right:6px}
 }
 @media (max-width:999px){
   .navrow{flex-wrap:wrap}.navrow .seg{width:100%}
@@ -270,7 +193,7 @@ input[type=text],input[type=password],input[type=date],input[type=time],input:no
     <div class="brand"><div class="logo">🌱</div><div><h1>한걸음 <em>행동노트</em></h1><p>관찰하고 · 이해하고 · 함께 자라요</p></div></div>
     <div class="stubar" id="stuBar"></div>
     <div class="today" id="today"></div>
-    <button class="gear" id="gearBtn" title="학생·행동·AI 설정">⚙️ <span>설정</span></button>
+    <button class="gear" id="gearBtn" title="학생·행동 설정">⚙️ <span>설정</span></button>
   </div>
   <div class="navrow">
     <nav class="tabs">
@@ -280,7 +203,7 @@ input[type=text],input[type=password],input[type=date],input[type=time],input:no
     </nav>
     <div class="seg" id="seg">
       <button data-v="record" class="on">✏️ 기록하기</button>
-      <button data-v="dash">📊 대시보드 · AI</button>
+      <button data-v="dash">📊 대시보드</button>
     </div>
   </div>
 </div></div>
@@ -297,8 +220,8 @@ input[type=text],input[type=password],input[type=date],input[type=time],input:no
 
 <script>
 /* ═════════════ 공통 ═════════════ */
-const S = { config:null, hasApiKey:false, files:{}, method:'abc', view:'record', student:'',
-            days:30, beh:'', cache:{}, aiMode:'short', charts:[], rows:[], freqToday:[], durToday:[], place:'', ai:{}, abcI:0 };
+const S = { config:null, files:{}, method:'abc', view:'record', student:'',
+            days:30, beh:'', cache:{}, charts:[], rows:[], freqToday:[], durToday:[], place:'', abcI:0 };
 const I_LABEL = {1:'약',2:'중',3:'강'};
 const I_COLOR = {1:'#3cb371',2:'#f2a91e',3:'#ec5b5b'};
 const PALETTE = ['#ef6f53','#1f9e89','#7a5fd6','#e0a01c','#3b82c4','#d6517d','#4f9a3a','#c26a2e','#5b6b80','#a3577e'];
@@ -325,7 +248,7 @@ if (window.Chart) { Chart.defaults.font.family="'Pretendard',sans-serif"; Chart.
 async function init(){
   const d=new Date(); $('#today').innerHTML=`📅 ${d.getMonth()+1}월 ${d.getDate()}일 (${'일월화수목금토'[d.getDay()]})`;
   S.student = lsGet('bh_student','');
-  S.place = lsGet('bh_place',''); S.aiModel = lsGet('bh_aimodel',''); S.aiMode = lsGet('bh_aimode','short');
+  S.place = lsGet('bh_place','');
   bindNav();
   if (typeof google === 'undefined' || !google.script) { showFatal('이 화면은 Apps Script 웹 앱 주소(…/exec)로 열어야 작동합니다.'); return; }
   const local=lsGet('bh_state',null);
@@ -333,8 +256,8 @@ async function init(){
   let st;
   try { st=await run('getAppState', S.student); }
   catch(e){ if(!local) showFatal(errMsg(e)); else toast('서버 연결이 늦어요. 저장된 기록으로 보여드리는 중입니다.',true); return; }
-  const changed = !local || JSON.stringify(local.config)!==JSON.stringify(st.config) || local.hasApiKey!==st.hasApiKey;
-  lsSet('bh_state',{config:st.config,hasApiKey:st.hasApiKey,files:st.files});
+  const changed = !local || JSON.stringify(local.config)!==JSON.stringify(st.config);
+  lsSet('bh_state',{config:st.config,files:st.files});
   applyState(st);
   if(st.packed) setPacked(st.packedFor, st.packed);                                   // ② 세 기록법 데이터가 함께 도착
   loadLocal(S.student);
@@ -359,7 +282,7 @@ function showFatal(msg){
     </ol>
     <button class="pri" onclick="location.reload()">다시 시도</button></div>`;
 }
-function applyState(st){ S.config=st.config; S.hasApiKey=st.hasApiKey; S.files=st.files; lsSet('bh_state',{config:st.config,hasApiKey:st.hasApiKey,files:st.files}); fillStudentSel(); }
+function applyState(st){ S.config=st.config; S.files=st.files; lsSet('bh_state',{config:st.config,files:st.files}); fillStudentSel(); }
 const AV_COLORS=['#ef6f53','#1f9e89','#7a5fd6','#e0a01c','#3b82c4','#d6517d','#4f9a3a','#c26a2e'];
 function avColor(n){ let x=0; for(const c of String(n)) x=(x*31+c.charCodeAt(0))>>>0; return AV_COLORS[x%AV_COLORS.length]; }
 const avatar=n=>`<span class="av" style="background:${avColor(n)}">${esc([...String(n)][0]||'?')}</span>`;
@@ -687,28 +610,15 @@ async function renderDash(m){
     <label>행동<select id="dBeh"><option value="">전체 행동</option></select></label>
     <span class="muted small" id="dInfo"></span>
     <button class="ghost sm" id="dRefresh" title="시트에서 최신 기록 다시 불러오기">🔄</button>
-    <div class="dtabs">${[['chart','📈 그래프'],['table','📋 기록표'],['ai','🤖 AI 분석']].map(([k,t])=>`<button data-t="${k}" class="${k===S.dtab?'on':''}">${t}</button>`).join('')}</div>
+    <div class="dtabs">${[['chart','📈 그래프'],['table','📋 기록표']].map(([k,t])=>`<button data-t="${k}" class="${k===S.dtab?'on':''}">${t}</button>`).join('')}</div>
   </div>
   <div id="dBody"><div class="card muted"><span class="spin"></span>기록을 불러오는 중…</div></div>
-  <div class="card aicard dai">
-    <div class="aihead"><h3>🤖 AI 분석 · 중재 조언 · 학부모 상담 팁 ${stuBadge()}</h3>
-      <div class="row"><select id="aiModel" style="width:auto;max-width:260px" title="이번 분석에 쓸 AI 모델">${modelOptions()}</select>
-      <select id="aiMode" style="width:auto"><option value="short" ${S.aiMode==='short'?'selected':''}>⚡ 간단 (빠름)</option><option value="full" ${S.aiMode==='full'?'selected':''}>📚 자세히</option></select>
-      <button class="pri" id="aiRun">AI 분석 실행</button></div></div>
-    <p class="muted small">위에서 고른 기간·행동의 기록을 OpenRouter의 선택한 모델로 보내 분석합니다. 학생 이름은 '대상 학생'으로 바꿔 전송됩니다. AI 결과는 참고 자료이며 최종 판단은 교사와 전문가가 합니다.</p>
-    <div id="aiOut" class="aiout"></div>
-  </div></div>`;
+  </div>`;
   el.querySelectorAll('.dtabs button').forEach(b=>b.onclick=()=>{ S.dtab=b.dataset.t;
     el.querySelector('.dash').dataset.dtab=S.dtab; el.querySelectorAll('.dtabs button').forEach(x=>x.classList.toggle('on',x===b)); });
   $('#dDays').onchange=e=>{ S.days=+e.target.value; drawDash(m); };
   $('#dBeh').onchange=e=>{ S.beh=e.target.value; drawDash(m); };
-  $('#aiRun').onclick=()=>runAI(m);
-  $('#aiMode').onchange=e=>{ S.aiMode=e.target.value; lsSet('bh_aimode',S.aiMode); };
-  $('#aiModel').onchange=e=>{
-    if(e.target.value==='__pick'){ e.target.value=S.aiModel; openPicker(id=>{ S.extraModel=id; setAiModel(id); $('#aiModel').innerHTML=modelOptions(); }); return; }
-    setAiModel(e.target.value); };
   $('#dRefresh').onclick=()=>loadDash(m,true);
-  showAI(m); loadLastReport(m);
   const c=S.cache[cKey(m)];
   if(c) useRows(m,c);                                  // 저장해 둔 기록으로 즉시 표시
   if(!c || Date.now()-c.t>300000) loadDash(m,false);    // 오래됐으면 뒤에서 새로 불러오기
@@ -814,97 +724,6 @@ function recentTable(m,rows){
     ${rs.map(r=>`<tr>${row(r).map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</table></div></div>`;
 }
 
-/* ═════════════ AI 모델 선택 ═════════════ */
-const AUTO='openrouter/auto';
-const favList=()=>(S.config.favorites||[]).map(l=>{ const [id,...r]=String(l).split('|'); return {id:id.trim(),label:(r.join('|').trim()||id.trim())}; }).filter(x=>x.id);
-function modelChoices(){
-  const seen=new Set(), out=[];
-  const add=(id,label)=>{ if(id && !seen.has(id)){ seen.add(id); out.push({id,label}); } };
-  add(AUTO,'🤖 자동 선택 (내용에 맞게)');
-  add(S.config.model,'⭐ 기본 · '+S.config.model);
-  favList().forEach(f=>add(f.id,'☆ '+f.label));
-  if(S.extraModel) add(S.extraModel,'🔎 '+S.extraModel);
-  return out;
-}
-function currentModel(){ const ids=modelChoices().map(x=>x.id); return ids.includes(S.aiModel)?S.aiModel:S.config.model; }
-function setAiModel(id){ S.aiModel=id; lsSet('bh_aimodel',id); }
-function modelOptions(){ const cur=currentModel();
-  return modelChoices().map(x=>`<option value="${esc(x.id)}" ${x.id===cur?'selected':''}>${esc(x.label)}</option>`).join('')+'<option value="__pick">🔍 다른 모델 찾기…</option>'; }
-
-let pickCb=null;
-async function openPicker(cb){
-  pickCb=cb;
-  let md=$('#pickModal');
-  if(!md){ md=document.createElement('div'); md.id='pickModal'; md.className='modal'; document.body.appendChild(md); }
-  md.innerHTML=`<div class="mbox">
-    <div class="mhead"><h3>🔍 OpenRouter 모델 고르기</h3><button class="ghost sm" id="mClose">닫기 ✕</button></div>
-    <div class="row" style="margin-bottom:10px;flex-wrap:nowrap"><input id="mSearch" placeholder="이름·회사로 검색 (예: claude, gemini, gpt, llama, deepseek)">
-      <select id="mSort" style="width:auto"><option value="new">최신순</option><option value="cheap">저렴한 순</option><option value="ctx">긴 글 처리 순</option><option value="name">이름순</option></select></div>
-    <div class="mlist" id="mList"><div class="empty"><span class="spin"></span>OpenRouter에서 모델 목록을 받는 중…</div></div>
-    <p class="muted small" style="margin:10px 0 0">가격은 <b>100만 토큰당 달러(입력 / 출력)</b>입니다. 이 앱의 분석 1회는 보통 입력 수천 토큰, 출력 1~4천 토큰 정도입니다. 모델마다 한국어 실력과 품질이 다르니 처음엔 몇 개를 비교해 보세요.</p></div>`;
-  md.classList.add('show');
-  md.onclick=e=>{ if(e.target===md) closePicker(); };
-  $('#mClose').onclick=closePicker;
-  try{ S.models=S.models||await run('listModels',false); }catch(e){ $('#mList').innerHTML=`<div class="banner">${esc(errMsg(e))}</div>`; return; }
-  const draw=()=>{
-    const q=val('#mSearch').toLowerCase(), so=$('#mSort').value;
-    let ms=S.models.filter(m=>!q||(m.id+' '+m.name).toLowerCase().includes(q));
-    ms.sort(so==='cheap'?(a,b)=>((a.pin??9e9)+(a.pout??9e9))-((b.pin??9e9)+(b.pout??9e9)):so==='ctx'?(a,b)=>b.ctx-a.ctx:so==='name'?(a,b)=>a.name.localeCompare(b.name):(a,b)=>b.created-a.created);
-    const price=v=>v==null||v<0?'-':v===0?'무료':'$'+v;
-    const favs=new Set(favList().map(f=>f.id));
-    $('#mList').innerHTML = ms.length ? ms.slice(0,150).map(m=>`<div class="mrow">
-        <div class="minfo"><b>${esc(m.name)}</b><code>${esc(m.id)}</code>
-          <span class="muted small">💲 ${price(m.pin)} / ${price(m.pout)} · 📏 ${m.ctx?Math.round(m.ctx/1000)+'K':'-'} 토큰</span></div>
-        <div class="mbtns"><button class="pri sm" data-use="${esc(m.id)}">이번에 사용</button>
-          <button class="ghost sm" data-fav="${esc(m.id)}" data-name="${esc(m.name)}" ${favs.has(m.id)?'disabled':''}>${favs.has(m.id)?'★ 즐겨찾기됨':'☆ 즐겨찾기'}</button></div></div>`).join('')
-      + (ms.length>150?`<div class="muted small" style="padding:8px">… ${ms.length-150}개 더 있어요. 검색어를 더 구체적으로 적어 주세요.</div>`:'')
-      : '<div class="empty">검색 결과가 없어요.</div>';
-    $('#mList').querySelectorAll('[data-use]').forEach(b=>b.onclick=()=>{ const cb=pickCb; closePicker(); cb&&cb(b.dataset.use); toast('이번 분석 모델: '+b.dataset.use); });
-    $('#mList').querySelectorAll('[data-fav]').forEach(b=>b.onclick=async()=>{ b.disabled=true;
-      S.config.favorites=(S.config.favorites||[]).concat(`${b.dataset.fav} | ${b.dataset.name}`);
-      try{ applyState(await run('saveConfig',S.config)); toast('즐겨찾기에 추가했어요'); draw(); const s=$('#aiModel'); if(s) s.innerHTML=modelOptions(); }
-      catch(e){ toast('저장 실패: '+errMsg(e),true); b.disabled=false; } });
-  };
-  $('#mSearch').oninput=draw; $('#mSort').onchange=draw; draw(); $('#mSearch').focus();
-}
-function closePicker(){ const md=$('#pickModal'); if(md) md.classList.remove('show'); }
-
-/* ═════════════ AI 분석 ═════════════ */
-const aiKey=m=>`${m}|${S.student}`;
-function showAI(m){
-  const out=$('#aiOut'), r=S.ai[aiKey(m)]; if(!out) return;
-  if(!r){ out.innerHTML = S.hasApiKey?'<div class="empty"><span class="em">🤖</span>[AI 분석 실행]을 누르면 분석 결과가 여기에 나타나요.</div>':'<div class="banner">⚙ 설정에서 OpenRouter API 키를 먼저 저장해 주세요.</div>'; return; }
-  const html = window.marked ? marked.parse(r.markdown) : '<pre>'+esc(r.markdown)+'</pre>';
-  out.innerHTML = `<div class="muted small">${esc(r.when)} · ${r.requested==='openrouter/auto'?'🤖 자동 선택 → ':''}<b>${esc(r.model)}</b>${r.count?` · 기록 ${r.count}건 기준`:''}${r.secs?` · ${r.secs}초 걸림`:''}</div>
-    ${window.DOMPurify?DOMPurify.sanitize(html):html}
-    <div class="row" style="margin-top:12px"><button class="ghost" id="aiCopy">📋 복사</button>
-    ${r.url?`<a class="ghost sm" style="padding:9px 14px;border-radius:14px;border:1.5px solid var(--line);text-decoration:none" href="${esc(r.url)}" target="_blank">📄 시트에서 보기 (자동 저장됨)</a>`:''}</div>`;
-  $('#aiCopy').onclick=()=>copyText(r.markdown);
-}
-async function loadLastReport(m){
-  const k=aiKey(m); if(S.ai[k]||S.ai[k+'#checked']) return; S.ai[k+'#checked']=1;
-  try{ const r=await run('getLastReport',m,S.student);
-    if(r && !S.ai[k]){ S.ai[k]={markdown:r.markdown,model:r.model,when:'지난 분석 '+r.when+' ('+r.period+')',url:r.url}; if(aiKey(m)===k) showAI(m); } }
-  catch(e){ /* 조용히 무시 */ }
-}
-async function runAI(m){
-  if(!S.hasApiKey) return toast('설정에서 OpenRouter API 키를 먼저 저장해 주세요',true);
-  const btn=$('#aiRun'), out=$('#aiOut'), t0=Date.now(), k=aiKey(m);
-  btn.disabled=true; btn.textContent='분석 중…';
-  out.innerHTML=`<div class="empty"><span class="spin"></span>AI가 기록을 분석하고 있어요 · <b id="aiSec">0</b>초<br><span class="small">${S.aiMode==='short'?'간단 모드':'자세히 모드는 시간이 더 걸려요'}</span></div>`;
-  const tick=setInterval(()=>{ const s=$('#aiSec'); if(s) s.textContent=Math.round((Date.now()-t0)/1000); },1000);
-  try{
-    const r=await run('analyzeWithAI',m,S.student,S.days,S.beh,S.aiMode,currentModel());
-    r.when=new Date().toLocaleString('ko-KR'); r.secs=Math.round((Date.now()-t0)/1000); S.ai[k]=r;
-  }catch(e){ clearInterval(tick); out.innerHTML=`<div class="banner">분석 실패: ${esc(errMsg(e))}</div>`; btn.disabled=false; btn.textContent='AI 분석 실행'; return; }
-  clearInterval(tick); btn.disabled=false; btn.textContent='다시 분석'; showAI(m);
-}
-function copyText(t){
-  const fallback=()=>{ const ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select();
-    try{ document.execCommand('copy'); toast('복사했습니다'); }catch(e){ toast('복사 실패',true); } ta.remove(); };
-  if(navigator.clipboard) navigator.clipboard.writeText(t).then(()=>toast('복사했습니다'),fallback); else fallback();
-}
-
 /* ═════════════ 설정 ═════════════ */
 const ta=(id,label,arr,rows)=>`<label>${label}<textarea id="${id}" rows="${rows||5}" placeholder="한 줄에 하나씩">${esc((arr||[]).join('\n'))}</textarea></label>`;
 function stuCard(s,i){
@@ -926,19 +745,6 @@ function renderSettings(){
   <div class="card"><h2>ABC · 공통 선택지</h2>
     <div class="cols" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
     ${ta('pA','선행사건(A) 목록',c.antecedents,8)}${ta('pC','후속결과(C) 목록',c.consequences,8)}${ta('pP','장소/활동 목록',c.places,8)}</div></div>
-  <div class="card"><h2>OpenRouter AI</h2>
-    <label>API 키 <span class="badge ${S.hasApiKey?'ok':''}">${S.hasApiKey?'저장됨':'미설정'}</span>
-      <input type="password" id="apiKey" placeholder="sk-or-… (새로 넣거나 바꿀 때만 입력)" autocomplete="off"></label>
-    <div class="row" style="margin-bottom:12px"><button class="ghost" id="keySave">키 저장</button><button class="ghost" id="keyTest">연결 테스트</button><button class="ghost" id="keyDel">키 삭제</button></div>
-    <label>기본 모델 ID
-      <div class="row" style="flex-wrap:nowrap"><input id="model" value="${esc(c.model)}"><button class="ghost" id="modelPick" type="button" style="white-space:nowrap">🔍 목록에서 고르기</button></div></label>
-    <div class="cols" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px">
-      ${ta('fav','☆ 즐겨찾기 모델 (분석 화면에서 바로 고르기 · 한 줄에 "모델ID | 별칭")',c.favorites,4)}
-      ${ta('fb','🛟 예비 모델 (기본 모델이 실패하면 차례로 자동 전환 · 최대 3개)',c.fallbacks,4)}
-      ${ta('autoAllow','🤖 자동 선택 후보 제한 (비우면 제한 없음 · 예: anthropic/* )',c.autoAllowed,4)}
-    </div>
-    <label style="display:flex;gap:8px;align-items:center;color:var(--ink);font-size:14px"><input type="checkbox" id="fast" ${c.fast!==false?'checked':''} style="width:auto"> ⚡ 빠른 응답 우선 (응답 속도가 빠른 제공자부터 사용)</label>
-    <p class="muted small">openrouter.ai/models 에서 원하는 모델의 ID를 복사해 붙여넣으세요. 키는 이 스크립트의 속성(서버)에만 저장되고 화면으로 다시 내려오지 않습니다.</p></div>
   <div class="card"><h2>구글 시트 파일</h2>
     ${['abc','freq','dur'].map(k=>`<div style="margin-bottom:6px">${METHOD_LABEL[k]}: ${S.files[k]?`<a href="${esc(S.files[k])}" target="_blank">시트 열기</a>`:'<span class="muted">첫 기록을 저장하면 자동으로 만들어집니다</span>'}</div>`).join('')}</div>
   <button class="pri big" id="cfgSave">설정 저장</button>`;
@@ -949,22 +755,10 @@ function renderSettings(){
   $('#cfgSave').onclick=async e=>{ e.currentTarget.disabled=true;
     try{ applyState(await run('saveConfig',readSettings())); toast('설정을 저장했습니다 ✓'); renderSettings(); }
     catch(err){ toast('저장 실패: '+errMsg(err),true); e.currentTarget.disabled=false; } };
-  $('#keySave').onclick=async()=>{ const k=val('#apiKey'); if(!k) return toast('API 키를 입력해 주세요',true);
-    try{ applyState(await run('saveApiKey',k)); S.config.model=val('#model')||S.config.model; toast('API 키를 저장했습니다 ✓'); renderSettings(); }catch(e){ toast(errMsg(e),true); } };
-  $('#keyDel').onclick=async()=>{ if(!confirm('저장된 API 키를 삭제할까요?')) return; applyState(await run('saveApiKey','')); renderSettings(); };
-  $('#modelPick').onclick=()=>openPicker(id=>{ $('#model').value=id; toast('기본 모델을 바꿨어요. [설정 저장]을 눌러 주세요.'); });
-  $('#keyTest').onclick=async e=>{ const b=e.currentTarget; b.disabled=true; b.textContent='테스트 중…';
-    try{ await run('saveConfig',readSettings()).then(applyState); toast(await run('testOpenRouter',val('#model'))); }
-    catch(err){ toast(errMsg(err),true); } finally{ b.disabled=false; b.textContent='연결 테스트'; } };
 }
 function readSettings(){
   const lines=s=>String(s||'').split('\n').map(x=>x.trim()).filter(Boolean);
   return {
-    model: val('#model') || S.config.model,
-    fast: $('#fast') ? $('#fast').checked : S.config.fast!==false,
-    favorites: $('#fav') ? lines($('#fav').value) : S.config.favorites,
-    fallbacks: $('#fb') ? lines($('#fb').value) : S.config.fallbacks,
-    autoAllowed: $('#autoAllow') ? lines($('#autoAllow').value) : S.config.autoAllowed,
     students: [...document.querySelectorAll('.stucard')].map(c=>({ name:c.querySelector('.sName').value.trim(),
       abc:lines(c.querySelector('.sAbc').value), freq:lines(c.querySelector('.sFreq').value), dur:lines(c.querySelector('.sDur').value) })),
     antecedents: lines($('#pA').value), consequences: lines($('#pC').value), places: lines($('#pP').value)
